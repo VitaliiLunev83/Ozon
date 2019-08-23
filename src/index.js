@@ -206,6 +206,7 @@ function renderCatalog() {
     const catalogWrapper = document.querySelector('.catalog');
     const category = new Set();
     const catalogBtn = document.querySelector('.catalog-button');
+    const filterTitle = document.querySelector('.filter-title h5');
 
 
     cards.forEach((card) => {
@@ -218,6 +219,7 @@ function renderCatalog() {
         catalogList.appendChild(li);
     });
 
+    const allLi = catalogList.querySelectorAll('li');
 
     catalogBtn.addEventListener('click', () => {
         if (catalogWrapper.style.display) {
@@ -235,7 +237,15 @@ function renderCatalog() {
                 }
             });
         }
+        allLi.forEach((e) => {
+            if (e === event.target) {
+                e.classList.add('active');
+            } else {
+                e.classList.remove('active');
+            }
+        });
 
+        filterTitle.textContent = event.target.textContent;
     });
 
 }
